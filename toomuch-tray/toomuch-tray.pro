@@ -14,10 +14,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    floating.cpp
+    floating.cpp \
+    pomodorostatus.cpp
 
 HEADERS  += mainwindow.h \
-    floating.h
+    floating.h \
+    pomodorostatus.h
 
 FORMS    += mainwindow.ui \
     floating.ui

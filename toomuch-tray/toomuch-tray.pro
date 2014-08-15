@@ -23,3 +23,9 @@ HEADERS  += mainwindow.h \
 
 FORMS    += mainwindow.ui \
     floating.ui
+
+
+
+
+unix: CONFIG += link_pkgconfig
+unix: PKGCONFIG += libcurl

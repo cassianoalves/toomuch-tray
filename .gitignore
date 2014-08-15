@@ -19,3 +19,10 @@
 *.exe
 *.out
 *.app
+
+#VI
+*~
+*.swp
+
+#Qt
+toomuch-tray-build*

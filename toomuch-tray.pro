@@ -12,25 +12,26 @@ TARGET = toomuch-tray
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-        mainwindow.cpp \
-    floating.cpp \
-    pomodorostatus.cpp \
-    tomatoidao.cpp \
-    ticker.cpp
+SOURCES += \
+    src/view/floating.cpp \
+    src/main.cpp \
+    src/model/pomodoro.cpp \
+    src/utils.cpp \
+    src/format.cpp
 
-HEADERS  += mainwindow.h \
-    floating.h \
-    pomodorostatus.h \
-    pomodorostatusrepository.h \
-    tomatoidao.h \
-    ticker.h
+HEADERS  += \
+    src/view/floating.h \
+    src/model/pomodoro.h \
+    src/utils.h \
+    src/format.h
 
-FORMS    += mainwindow.ui \
-    floating.ui
-
-
-
+FORMS    += \
+    src/view/floating.ui
 
 unix: CONFIG += link_pkgconfig
+
 unix: PKGCONFIG += libcurl
+
+RESOURCES += \
+    resources/images.qrc
+

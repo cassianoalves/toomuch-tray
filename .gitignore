@@ -25,4 +25,4 @@
 *.swp
 
 #Qt
-toomuch-tray-build*
+build*

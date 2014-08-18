@@ -19,3 +19,4 @@ void Floating::updatePomodoro(Pomodoro status) {
     ui->lbEvent->setText(Format::formatTime(status.timeRemaining).c_str());
     ui->lbTime->setText(Format::formatEvent(status.pomodoroEvent).c_str());
 }
+

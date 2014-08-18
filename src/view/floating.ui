@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>162</width>
+    <width>189</width>
     <height>21</height>
    </rect>
   </property>
@@ -34,18 +34,18 @@
     <rect>
      <x>40</x>
      <y>0</y>
-     <width>71</width>
+     <width>91</width>
      <height>21</height>
     </rect>
    </property>
    <property name="text">
-    <string>Long Break</string>
+    <string>Short Break</string>
    </property>
   </widget>
   <widget class="QLabel" name="lbTime">
    <property name="geometry">
     <rect>
-     <x>120</x>
+     <x>140</x>
      <y>0</y>
      <width>41</width>
      <height>21</height>

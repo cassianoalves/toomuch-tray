@@ -21,6 +21,10 @@ int main(int argc, char *argv[])
 
 
     Floating w;
+    QMenu menu;
+    menu.addAction("Quit");
+
+    w.setContextMenu(&menu);
 
 
     //QRect cur = w.geometry();

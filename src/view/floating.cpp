@@ -40,3 +40,12 @@ void Floating::mouseMoveEvent(QMouseEvent *event) {
     }
 }
 
+void Floating::contextMenuEvent(QContextMenuEvent *event) {
+    std::cout << "contextMenuEvent" << std::endl;
+    contextMenu->move(event->globalPos());
+    contextMenu->show();
+}
+
+void Floating::setContextMenu(QMenu *menu) {
+    contextMenu = menu;
+}

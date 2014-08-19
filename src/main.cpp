@@ -9,18 +9,6 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-/*
-    QSystemTrayIcon tray;
-    QPixmap content;
-    content.fill(Qt::red);
-
-    QIcon ico;
-    tray.setIcon(ico);
-
-    tray.show();
-
-*/
-
 
     Floating w;
     Menu menu(&w);

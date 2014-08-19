@@ -17,13 +17,15 @@ SOURCES += \
     src/main.cpp \
     src/model/pomodoro.cpp \
     src/utils.cpp \
-    src/format.cpp
+    src/format.cpp \
+    src/view/menu.cpp
 
 HEADERS  += \
     src/view/floating.h \
     src/model/pomodoro.h \
     src/utils.h \
-    src/format.h
+    src/format.h \
+    src/view/menu.h
 
 FORMS    += \
     src/view/floating.ui

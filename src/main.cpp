@@ -1,8 +1,10 @@
-#include "src/view/floating.h"
 #include <QApplication>
 #include <QSystemTrayIcon>
 #include <QPixmap>
 #include <QLabel>
+
+#include "src/view/floating.h"
+#include "src/view/menu.h"
 
 int main(int argc, char *argv[])
 {
@@ -21,10 +23,10 @@ int main(int argc, char *argv[])
 
 
     Floating w;
-    QMenu menu;
-    menu.addAction("Quit");
-
+    Menu menu(&w);
     w.setContextMenu(&menu);
+
+    QObject::connect(&menu, SIGNAL(quit()), &a, SLOT(quit()));
 
 
     //QRect cur = w.geometry();

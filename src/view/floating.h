@@ -19,8 +19,15 @@ public:
 public slots:
     void updatePomodoro(Pomodoro status);
 
+protected:
+     void mousePressEvent(QMouseEvent *event);
+     void mouseMoveEvent(QMouseEvent *event);
+     void mouseReleaseEvent(QMouseEvent *event);
+
+
 private:
     Ui::Floating *ui;
+    QPoint dragPos;
 };
 
 #endif // FLOATING_H

@@ -23,7 +23,12 @@ void Floating::updatePomodoro(Pomodoro status) {
 }
 
 void Floating::mousePressEvent(QMouseEvent *event) {
-    dragPos = event->pos();
+    if (event->buttons() == Qt::LeftButton) {
+        event->accept();
+        dragPos = event->pos();
+    } else {
+        event->ignore();
+    }
 }
 
 void Floating::mouseMoveEvent(QMouseEvent *event) {
@@ -35,7 +40,3 @@ void Floating::mouseMoveEvent(QMouseEvent *event) {
     }
 }
 
-void Floating::mouseReleaseEvent(QMouseEvent *event) {
-    std::cout << "mouseReleaseEvent" << std::endl;
-
-}

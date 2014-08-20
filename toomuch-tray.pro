@@ -16,19 +16,22 @@ SOURCES += \
     src/view/floating.cpp \
     src/main.cpp \
     src/model/pomodoro.cpp \
-    src/utils.cpp \
     src/format.cpp \
-    src/view/menu.cpp
+    src/view/menu.cpp \
+    src/model/config.cpp \
+    src/view/configdialog.cpp
 
 HEADERS  += \
     src/view/floating.h \
     src/model/pomodoro.h \
-    src/utils.h \
     src/format.h \
-    src/view/menu.h
+    src/view/menu.h \
+    src/model/config.h \
+    src/view/configdialog.h
 
 FORMS    += \
-    src/view/floating.ui
+    src/view/floating.ui \
+    src/view/configdialog.ui
 
 unix: CONFIG += link_pkgconfig
 

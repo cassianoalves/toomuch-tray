@@ -3,7 +3,7 @@
 Menu::Menu(QWidget *parent) :
     QMenu(parent)
 {
-    configureAction = new QAction(tr("Configure"), this);
+    configureAction = new QAction(tr("Configure..."), this);
     quitAction = new QAction(tr("Quit"), this);
     this->addAction(configureAction);
     this->addAction(quitAction);

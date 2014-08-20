@@ -16,7 +16,7 @@ string formatTime(long time) {
 string formatEvent(Pomodoro::PomodoroEvent event) {
     const char * eventStr = "";
     switch(event) {
-        case Pomodoro::PomodoroEvent::POMODORO:
+       case Pomodoro::PomodoroEvent::POMODORO:
             eventStr = "Pomodoro";
             break;
     }

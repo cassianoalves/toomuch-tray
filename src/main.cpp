@@ -5,6 +5,7 @@
 
 #include "src/view/floating.h"
 #include "src/view/menu.h"
+#include "src/view/configdialog.h"
 
 int main(int argc, char *argv[])
 {
@@ -13,8 +14,10 @@ int main(int argc, char *argv[])
     Floating w;
     Menu menu(&w);
     w.setContextMenu(&menu);
+    ConfigDialog config;
 
     QObject::connect(&menu, SIGNAL(quit()), &a, SLOT(quit()));
+    QObject::connect(&menu, SIGNAL(configure()), &config, SLOT(show()));
 
 
     //QRect cur = w.geometry();

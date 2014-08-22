@@ -11,6 +11,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = toomuch-tray
 TEMPLATE = app
 
+INCLUDEPATH += $(BOOST_HOME)/boost
 
 SOURCES += \
     src/view/floating.cpp \
@@ -19,7 +20,8 @@ SOURCES += \
     src/format.cpp \
     src/view/menu.cpp \
     src/model/config.cpp \
-    src/view/configdialog.cpp
+    src/view/configdialog.cpp \
+    configdatdao.cpp
 
 HEADERS  += \
     src/view/floating.h \
@@ -27,7 +29,9 @@ HEADERS  += \
     src/format.h \
     src/view/menu.h \
     src/model/config.h \
-    src/view/configdialog.h
+    src/view/configdialog.h \
+    src/repository/configrepository.h \
+    configdatdao.h
 
 FORMS    += \
     src/view/floating.ui \

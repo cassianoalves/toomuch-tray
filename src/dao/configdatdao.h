@@ -5,6 +5,8 @@
 
 #include "src/repository/configrepository.h"
 
+#define CONFIG_FILENAME "config.json"
+
 class ConfigDatDAO : public ConfigRepository
 {
 public:
@@ -12,11 +14,12 @@ public:
     ConfigDatDAO();
     void setHomePath(std::string homePath);
     void writeConfig(Config config);
-    Config readConfig();
+    Config * readConfig();
 
 private:
     std::string homePath;
 
+    std::string buildConfigPath();
 };
 
 #endif // CONFIGDATDAO_H

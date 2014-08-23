@@ -39,6 +39,10 @@ private:
     ConfigRepository *configRepository;
     QRect screenLimits;
 
+    void checkScreenLimits();
+    QPoint calculateNewPosition(QPoint requestedPos);
+    QPoint calculateMenuPosition(QContextMenuEvent *event);
+
 };
 
 #endif // FLOATING_H

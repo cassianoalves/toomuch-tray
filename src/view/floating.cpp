@@ -5,6 +5,8 @@
 #include "src/format.h"
 #include "src/model/config.h"
 
+#define limit_value(v, _min, _max) (v<_min?_min:v>_max?_max:v)
+
 Floating::Floating(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Floating)
@@ -12,8 +14,7 @@ Floating::Floating(QWidget *parent) :
     ui->setupUi(this);
     setWindowFlags(Qt::Widget | Qt::FramelessWindowHint | Qt::X11BypassWindowManagerHint);
 
-    screenLimits = QApplication::desktop()->availableGeometry();
-    screenLimits.setBottomRight(screenLimits.bottomRight() - this->geometry().bottomRight());
+    checkScreenLimits();
 }
 
 Floating::~Floating()
@@ -27,32 +28,27 @@ void Floating::updatePomodoro(Pomodoro status) {
 }
 
 void Floating::mousePressEvent(QMouseEvent *event) {
-    screenLimits = QApplication::desktop()->availableGeometry();
-    screenLimits.setBottomRight(screenLimits.bottomRight() - this->geometry().bottomRight());
-
     if (event->buttons() == Qt::LeftButton) {
         event->accept();
         dragPos = event->pos();
+        checkScreenLimits();
     } else {
         event->ignore();
     }
 }
 
 void Floating::mouseMoveEvent(QMouseEvent *event) {
-    QPoint newPosition = event->globalPos() - dragPos;
-    if ((event->buttons() == Qt::LeftButton)
-            && screenLimits.contains(newPosition)
-            )
+    if (event->buttons() == Qt::LeftButton)
     {
         event->accept();
-        this->move(newPosition);
+        this->move(calculateNewPosition(event->globalPos() - dragPos));
     } else {
         event->ignore();
     }
 }
 
 void Floating::contextMenuEvent(QContextMenuEvent *event) {
-    contextMenu->move(event->globalPos());
+    contextMenu->move(calculateMenuPosition(event));
     contextMenu->show();
 }
 
@@ -68,7 +64,7 @@ void Floating::setConfigRepository(ConfigRepository * repo)
 void Floating::mouseReleaseEvent(QMouseEvent *event)
 {
     Config * c = configRepository->readConfig();
-    c->widgetPosition = (event->globalPos() - dragPos);
+    c->widgetPosition = (this->pos());
     configRepository->writeConfig(*c);
     delete c;
     event->ignore();
@@ -80,4 +76,40 @@ void Floating::show()
     this->move(c->widgetPosition);
     delete c;
     QWidget::show();
+}
+
+void Floating::checkScreenLimits()
+{
+    screenLimits = QApplication::desktop()->availableGeometry();
+    QPoint size(geometry().size().width(), geometry().size().height());
+
+    screenLimits.setBottomRight(screenLimits.bottomRight() - size);
+
+#ifdef DEBUG
+    std::cout << "Limits: " << screenLimits.x();
+    std::cout << "," << screenLimits.y();
+    std::cout << "," << screenLimits.width();
+    std::cout << "," << screenLimits.height() << std::endl;
+#endif
+}
+
+QPoint Floating::calculateNewPosition(QPoint requestedPos)
+{
+    QPoint adjustedPos;
+
+    adjustedPos.setX(limit_value(requestedPos.x(),screenLimits.x(), screenLimits.bottomRight().x()));
+    adjustedPos.setY(limit_value(requestedPos.y(),screenLimits.y(), screenLimits.bottomRight().y()));
+
+#ifdef DEBUG
+    std::cout << requestedPos.x() << "," << requestedPos.y();
+    std::cout << " => ";
+    std::cout << adjustedPos.x() << "," << adjustedPos.y() << std::endl;
+#endif
+
+    return adjustedPos;
+}
+
+QPoint Floating::calculateMenuPosition(QContextMenuEvent *event)
+{
+    return event->globalPos();
 }

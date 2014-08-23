@@ -23,7 +23,8 @@ SOURCES += \
     src/view/menu.cpp \
     src/model/config.cpp \
     src/view/configdialog.cpp \
-    src/dao/configdatdao.cpp
+    src/dao/configdatdao.cpp \
+    src/model/pomodorostatus.cpp
 
 HEADERS  += \
     src/view/floating.h \
@@ -33,7 +34,8 @@ HEADERS  += \
     src/model/config.h \
     src/view/configdialog.h \
     src/repository/configrepository.h \
-    src/dao/configdatdao.h
+    src/dao/configdatdao.h \
+    src/model/pomodorostatus.h
 
 FORMS    += \
     src/view/floating.ui \

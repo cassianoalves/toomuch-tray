@@ -11,26 +11,31 @@
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+    QApplication app(argc, argv);
 
-    Floating w;
-    Menu menu(&w);
-    w.setContextMenu(&menu);
+    Floating widget;
+    Menu menu(&widget);
+    widget.setContextMenu(&menu);
     ConfigDialog config;
     ConfigRepository * configRepo = new ConfigDatDAO(getenv("HOME"));
     config.setConfigRepository(configRepo);
-    w.setConfigRepository(configRepo);
+    widget.setConfigRepository(configRepo);
+    PomodoroStatus pomodoroStatus;
 
-    QObject::connect(&menu, SIGNAL(quit()), &a, SLOT(quit()));
-    QObject::connect(&menu, SIGNAL(configure()), &config, SLOT(show()));
+    menu.setConfigDialog(&config);
+    menu.setPomodoroStatus(&pomodoroStatus);
+
+    QObject::connect(&pomodoroStatus, SIGNAL(changed(Pomodoro)), &widget, SLOT(updatePomodoro(Pomodoro)));
+//    QObject::connect(&menu, SIGNAL(quit()), &app, SLOT(quit()));
+//    QObject::connect(&menu, SIGNAL(configure()), &config, SLOT(show()));
 
 
     //QRect cur = w.geometry();
     //cur.setCoords(300,500,50,50);
 
     //w.setGeometry(500,100,200,200);
-    w.show();
+    widget.show();
 
 
-    return a.exec();
+    return app.exec();
 }

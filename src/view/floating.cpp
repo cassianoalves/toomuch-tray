@@ -19,8 +19,8 @@ Floating::~Floating()
 }
 
 void Floating::updatePomodoro(Pomodoro status) {
-    ui->lbEvent->setText(Format::formatTime(status.timeRemaining).c_str());
-    ui->lbTime->setText(Format::formatEvent(status.pomodoroEvent).c_str());
+    ui->lbTime->setText(Format::formatTime(status.timeRemaining).c_str());
+    ui->lbEvent->setText(Format::formatEvent(status.pomodoroEvent).c_str());
 }
 
 void Floating::mousePressEvent(QMouseEvent *event) {

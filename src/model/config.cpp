@@ -5,7 +5,7 @@ Config::Config()
     source = Config::OFFLINE;
     sourceInfo = "";
     updateTime = 0;
-    widgetPosition = QPoint(30,30);
+    widgetPosition = QPoint(30,0);
 }
 
 

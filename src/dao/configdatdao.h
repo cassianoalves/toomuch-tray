@@ -2,10 +2,10 @@
 #define CONFIGDATDAO_H
 
 #include <string>
-
 #include "src/repository/configrepository.h"
 
 #define CONFIG_FILENAME "config.json"
+#define CONFIG_DIR ".toomuch"
 
 class ConfigDatDAO : public ConfigRepository
 {

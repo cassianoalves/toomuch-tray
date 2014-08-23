@@ -28,9 +28,10 @@ private Q_SLOTS:
 
 
     // ConfigDatDao
+#define TEST_CONFIG_PATH "/tmp/.toomuch/config.json"
     void testWriteNewFile()
     {
-        boost::filesystem::remove("/tmp/config.json");
+        boost::filesystem::remove_all("/tmp/.toomuch");
         ConfigDatDAO dao("/tmp");
         Config config;
         config.source = Config::TOOMUCH;
@@ -41,10 +42,10 @@ private Q_SLOTS:
         dao.writeConfig(config);
         Config * newConfig = dao.readConfig();
 
-        if (!boost::filesystem::exists("/tmp/config.json"))
+        if (!boost::filesystem::exists(TEST_CONFIG_PATH))
             QFAIL("Arquivo nao foi criado.");
 
-        boost::filesystem::remove("/tmp/config.json");
+        boost::filesystem::remove_all("/tmp/.toomuch");
 
         QCOMPARE(newConfig->updateTime, config.updateTime);
         QCOMPARE(newConfig->sourceInfo, config.sourceInfo);

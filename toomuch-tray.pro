@@ -13,7 +13,7 @@ TEMPLATE = app
 
 INCLUDEPATH += $(HOME)/lib/boost
 LIBS += $(HOME)/lib/boost/stage/lib/libboost_filesystem.a $(HOME)/lib/boost/stage/lib/libboost_system.a
-CCFLAG += -Wunused-local-typedefs                  ^
+QMAKE_CXXFLAGS += -Wno-unused-local-typedefs
 
 SOURCES += \
     src/view/floating.cpp \

@@ -1,5 +1,6 @@
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
+#include <boost/filesystem.hpp>
 #include "configdatdao.h"
 
 using namespace boost::property_tree;
@@ -26,21 +27,29 @@ void ConfigDatDAO::writeConfig(Config config) {
     p.put_child("widgetPosition", pp);
     p.put("source", config.source);
 
+    boost::filesystem::create_directory(
+                boost::filesystem::path(homePath)/CONFIG_DIR);
     json_parser::write_json(buildConfigPath(), p);
 }
 
 Config * ConfigDatDAO::readConfig() {
     Config * c = new Config();
-    ptree p;
-    json_parser::read_json(buildConfigPath().c_str(), p);
-    c->updateTime = p.get<long>("updateTime");
-    c->sourceInfo = p.get<std::string>("sourceInfo");
-    c->widgetPosition.setX(p.get<int>(path("widgetPosition.x")));
-    c->widgetPosition.setY(p.get<int>(path("widgetPosition.y")));
-    c->setSource(p.get<int>("source"));
+    if(boost::filesystem::exists(buildConfigPath()))
+    {
+        ptree p;
+        json_parser::read_json(buildConfigPath(), p);
+        c->updateTime = p.get<long>("updateTime");
+        c->sourceInfo = p.get<std::string>("sourceInfo");
+        c->widgetPosition.setX(p.get<int>(path("widgetPosition.x")));
+        c->widgetPosition.setY(p.get<int>(path("widgetPosition.y")));
+        c->setSource(p.get<int>("source"));
+    }
     return c;
 }
 
 std::string ConfigDatDAO::buildConfigPath() {
-    return homePath + "/" + CONFIG_FILENAME;
+    boost::filesystem::path configPath(homePath);
+    configPath/=CONFIG_DIR;
+    configPath/=CONFIG_FILENAME;
+    return configPath.string();
 }

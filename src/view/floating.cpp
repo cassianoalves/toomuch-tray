@@ -3,6 +3,7 @@
 #include "floating.h"
 #include "ui_floating.h"
 #include "src/format.h"
+#include "src/model/config.h"
 
 Floating::Floating(QWidget *parent) :
     QWidget(parent),
@@ -47,4 +48,26 @@ void Floating::contextMenuEvent(QContextMenuEvent *event) {
 
 void Floating::setContextMenu(QMenu *menu) {
     contextMenu = menu;
+}
+
+void Floating::setConfigRepository(ConfigRepository * repo)
+{
+    configRepository = repo;
+}
+
+void Floating::mouseReleaseEvent(QMouseEvent *event)
+{
+    Config * c = configRepository->readConfig();
+    c->widgetPosition = (event->globalPos() - dragPos);
+    configRepository->writeConfig(*c);
+    delete c;
+    event->ignore();
+}
+
+void Floating::show()
+{
+    Config * c = configRepository->readConfig();
+    this->move(c->widgetPosition);
+    delete c;
+    QWidget::show();
 }

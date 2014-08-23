@@ -21,6 +21,7 @@ void ConfigDialog::show()
     ui->txtParameter->setText(config->sourceInfo.c_str());
     ui->spInterval->setValue(config->updateTime);
     ui->cbType->setCurrentIndex(config->source);
+    delete config;
     QDialog::show();
 }
 
@@ -41,5 +42,6 @@ void ConfigDialog::accept()
     c->updateTime = ui->spInterval->value();
     c->setSource(ui->cbType->currentIndex());
     configRepository->writeConfig(*c);
+    delete c;
     QDialog::accept();
 }

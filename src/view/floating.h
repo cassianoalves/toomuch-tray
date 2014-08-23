@@ -37,6 +37,7 @@ private:
     QPoint dragPos;
     QMenu *contextMenu;
     ConfigRepository *configRepository;
+    QRect screenLimits;
 
 };
 

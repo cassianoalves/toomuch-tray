@@ -11,6 +11,9 @@ Floating::Floating(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowFlags(Qt::Widget | Qt::FramelessWindowHint | Qt::X11BypassWindowManagerHint);
+
+    screenLimits = QApplication::desktop()->availableGeometry();
+    screenLimits.setBottomRight(screenLimits.bottomRight() - this->geometry().bottomRight());
 }
 
 Floating::~Floating()
@@ -24,6 +27,9 @@ void Floating::updatePomodoro(Pomodoro status) {
 }
 
 void Floating::mousePressEvent(QMouseEvent *event) {
+    screenLimits = QApplication::desktop()->availableGeometry();
+    screenLimits.setBottomRight(screenLimits.bottomRight() - this->geometry().bottomRight());
+
     if (event->buttons() == Qt::LeftButton) {
         event->accept();
         dragPos = event->pos();
@@ -33,9 +39,13 @@ void Floating::mousePressEvent(QMouseEvent *event) {
 }
 
 void Floating::mouseMoveEvent(QMouseEvent *event) {
-    if (event->buttons() == Qt::LeftButton) {
+    QPoint newPosition = event->globalPos() - dragPos;
+    if ((event->buttons() == Qt::LeftButton)
+            && screenLimits.contains(newPosition)
+            )
+    {
         event->accept();
-        this->move(event->globalPos() - dragPos);
+        this->move(newPosition);
     } else {
         event->ignore();
     }

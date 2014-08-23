@@ -24,8 +24,11 @@ int main(int argc, char *argv[])
     widget.setConfigRepository(configRepo);
     PomodoroStatus pomodoroStatus;
 
+    About about;
+
     menu.setConfigDialog(&config);
     menu.setPomodoroStatus(&pomodoroStatus);
+    menu.setAboutDialog(&about);
 
     QObject::connect(&pomodoroStatus, SIGNAL(changed(Pomodoro)), &widget, SLOT(updatePomodoro(Pomodoro)));
 

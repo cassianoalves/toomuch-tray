@@ -19,12 +19,19 @@ Menu::Menu(QWidget *parent) :
 
     this->addSeparator();
 
+    aboutAction = new QAction(tr("About..."), this);
+    this->addAction(aboutAction);
+
+    this->addSeparator();
+
+
 /* TODO: Novos Modos
     configureAction = new QAction(tr("Configure..."), this);
     this->addAction(configureAction);
 
     this->addSeparator();
 */
+
     quitAction = new QAction(tr("Quit"), this);
     this->addAction(quitAction);
     connect(quitAction, SIGNAL(triggered()), parent, SLOT(close()));
@@ -44,4 +51,10 @@ void Menu::setPomodoroStatus(PomodoroStatus * p)
     connect(startPomodoroAction, SIGNAL(triggered()), pomodoroStatus, SLOT(startPomodoro()));
     connect(startShortBreakAction, SIGNAL(triggered()), pomodoroStatus, SLOT(startShortBreak()));
     connect(startLongBreakAction, SIGNAL(triggered()), pomodoroStatus, SLOT(startLongBreak()));
+}
+
+void Menu::setAboutDialog(About * a)
+{
+    aboutDialog = a;
+    connect(aboutAction, SIGNAL(triggered()), aboutDialog, SLOT(show()));
 }

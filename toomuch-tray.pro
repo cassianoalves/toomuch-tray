@@ -24,7 +24,8 @@ SOURCES += \
     src/model/config.cpp \
     src/view/configdialog.cpp \
     src/dao/configdatdao.cpp \
-    src/model/pomodorostatus.cpp
+    src/model/pomodorostatus.cpp \
+    src/view/about.cpp
 
 HEADERS  += \
     src/view/floating.h \
@@ -35,11 +36,13 @@ HEADERS  += \
     src/view/configdialog.h \
     src/repository/configrepository.h \
     src/dao/configdatdao.h \
-    src/model/pomodorostatus.h
+    src/model/pomodorostatus.h \
+    src/view/about.h
 
 FORMS    += \
     src/view/floating.ui \
-    src/view/configdialog.ui
+    src/view/configdialog.ui \
+    src/view/about.ui
 
 unix: CONFIG += link_pkgconfig
 

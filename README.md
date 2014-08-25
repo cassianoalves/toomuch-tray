@@ -39,3 +39,6 @@ make in ../build-toomuch-tray-Desktop-Release
 Ok! Try out a compiled binary on /release directory.
 Compiled on a Mint Linux 17.
 
+# Roadmap
+* Adjust menu position to avoid showing outside screen.
+* Avoid more than one application instance

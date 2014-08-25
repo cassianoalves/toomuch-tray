@@ -12,7 +12,10 @@ TARGET = toomuch-tray
 TEMPLATE = app
 
 INCLUDEPATH += $(HOME)/lib/boost
-LIBS += $(HOME)/lib/boost/stage/lib/libboost_filesystem.a $(HOME)/lib/boost/stage/lib/libboost_system.a
+LIBS += $(HOME)/lib/boost/stage/lib/libboost_filesystem.a
+LIBS += $(HOME)/lib/boost/stage/lib/libboost_system.a
+LIBS += $(HOME)/lib/boost/stage/lib/libboost_regex.a
+
 QMAKE_CXXFLAGS += -Wno-unused-local-typedefs
 
 SOURCES += \
@@ -25,7 +28,8 @@ SOURCES += \
     src/view/configdialog.cpp \
     src/dao/configdatdao.cpp \
     src/model/pomodorostatus.cpp \
-    src/view/about.cpp
+    src/view/about.cpp \
+    src/dao/tomatoidao.cpp
 
 HEADERS  += \
     src/view/floating.h \
@@ -37,7 +41,9 @@ HEADERS  += \
     src/repository/configrepository.h \
     src/dao/configdatdao.h \
     src/model/pomodorostatus.h \
-    src/view/about.h
+    src/view/about.h \
+    src/repository/remotestatusrepository.h \
+    src/dao/tomatoidao.h
 
 FORMS    += \
     src/view/floating.ui \

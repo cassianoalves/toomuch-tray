@@ -4,6 +4,8 @@
 #include "boost/filesystem.hpp"
 #include "src/format.h"
 #include "src/dao/configdatdao.h"
+#include "src/dao/tomatoidao.h"
+
 
 class Test : public QObject
 {
@@ -51,6 +53,14 @@ private Q_SLOTS:
         QCOMPARE(newConfig->sourceInfo, config.sourceInfo);
         QCOMPARE(newConfig->widgetPosition, config.widgetPosition);
         QCOMPARE(newConfig->source, config.source);
+    }
+
+    void testTomatoiGetStatus() {
+        TomatoiDAO dao;
+        Pomodoro status = dao.getStatus("bla");
+        QCOMPARE(status.timeRemaining, 1489L);
+        QCOMPARE((int)status.pomodoroEvent, (int)Pomodoro::POMODORO);
+
     }
 
 };

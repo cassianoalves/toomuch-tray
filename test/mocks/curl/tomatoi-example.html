@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>Pomodoro!</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <meta content='TEALIL2a3uZynThMe-bhfj4r85OpeKBS5lxy0PCmkxM' name='google-site-verification' />
+    <script src='/js/jquery.js' type='text/javascript'></script>
+    <script src='/js/jquery.the_final_countdown.js' type='text/javascript'></script>
+    <script src='/js/soundmanager2.js' type='text/javascript'></script>
+    <script src='/js/notifyLibJS.js' type='text/javascript'></script>
+    <script src='/js/ssb.js' type='text/javascript'></script>
+    <script src='/js/hotkeys.js' type='text/javascript'></script>
+    <script src='/js/polling.js' type='text/javascript'></script>
+    <script src='/js/pomodoro.js' type='text/javascript'></script>
+    <script src='/facebox/facebox.js' type='text/javascript'></script>
+    <link href='/css/pomodoro.css' rel='stylesheet' type='text/css' />
+    <link href='/facebox/facebox.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='/favicon.ico' rel='shortcut icon' type='image/x-icon' />
+    <script type='text/javascript'>
+      //<![CDATA[
+        $(function(){
+          tickTock('Pomodoro','1489');
+        });
+      //]]>
+    </script>
+  </head>
+  <body>
+    <div id='primary_controls'>
+      <form action='/bla/reset' id='reset' method='post'>
+        <input name='_method' type='hidden' value='put' />
+        <input id='r' type='submit' value='Clear Timers' />
+      </form>
+      <div id='timer_buttons'>
+        <form action='/bla/timers' class='current' method='post'>
+          <input name='type' type='hidden' value='Pomodoro' />
+          <input id='pomodoro' type='submit' value='Pomodoro' />
+        </form>
+        <form action='/bla/timers' class='next' method='post'>
+          <input name='type' type='hidden' value='ShortBreak' />
+          <input id='short' type='submit' value='Short Break' />
+        </form>
+        <form action='/bla/timers' method='post'>
+          <input name='type' type='hidden' value='LongBreak' />
+          <input id='long' type='submit' value='Long Break' />
+        </form>
+      </div>
+      <form action='/bla' id='rename' method='post'>
+        <label for='custom'>http://tomatoi.st/</label>
+        <input id='custom' name='custom' type='text' value='bla' />
+        <input name='_method' type='hidden' value='put' />
+        <input type='submit' value='rename' />
+      </form>
+    </div>
+    <div id='timer'>
+      <div class='countdown_row countdown_amount'>00:00</div>
+    </div>
+    <div id='history'>
+      <h2>Timer History</h2>
+      <ul>
+        <li>
+          Pomodoro
+          <span class='time'>
+            less than a minute
+            ago
+          </span>
+        </li>
+      </ul>
+    </div>
+    <div id='footer'>
+      <p>
+        <a href='/faq' rel='facebox'>What's this all about?</a>
+      </p>
+    </div>
+    <div id='help'>
+      <div id='help-container'>
+        <div id='background'></div>
+        <div id='body'>
+          <h3>Keyboard Shortcuts</h3>
+          <table class='shortcuts'>
+            <tr>
+              <td class='left'>
+                Pomodoro
+              </td>
+              <td>
+                &lt;Ctrl&gt; + p
+              </td>
+            </tr>
+            <tr>
+              <td class='left'>
+                Short Break
+              </td>
+              <td>
+                &lt;Ctrl&gt; + s
+              </td>
+            </tr>
+            <tr>
+              <td class='left'>
+                Long Break
+              </td>
+              <td>
+                &lt;Ctrl&gt; + l
+              </td>
+            </tr>
+            <tr>
+              <td class='left'>
+                Clear Timers
+              </td>
+              <td>
+                &lt;Ctrl&gt; + r
+              </td>
+            </tr>
+            <tr>
+              <td class='left'>
+                Help
+              </td>
+              <td>
+                ?
+              </td>
+            </tr>
+          </table>
+          <div id='close-help'>
+            <a class='close' href='#'>close</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+      try {
+        var pageTracker = _gat._getTracker("UA-8955567-1");
+        pageTracker._trackPageview();
+      } catch(err) {}
+    </script>
+  </body>
+</html>

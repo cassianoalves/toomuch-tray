@@ -15,8 +15,12 @@ CONFIG   -= app_bundle
 INCLUDEPATH += ..
 INCLUDEPATH += .
 INCLUDEPATH += $(HOME)/lib/boost
+INCLUDEPATH += ./mocks
 
-LIBS += $(HOME)/lib/boost/stage/lib/libboost_filesystem.a $(HOME)/lib/boost/stage/lib/libboost_system.a
+
+LIBS += $(HOME)/lib/boost/stage/lib/libboost_filesystem.a
+LIBS += $(HOME)/lib/boost/stage/lib/libboost_system.a
+LIBS += $(HOME)/lib/boost/stage/lib/libboost_regex.a
 
 QMAKE_CXXFLAGS += -Wno-unused-local-typedefs
 
@@ -26,7 +30,15 @@ SOURCES += \
     alltests.cpp \
     ../src/format.cpp \
     ../src/dao/configdatdao.cpp \
-    ../src/model/config.cpp
+    ../src/model/config.cpp \
+    ../src/dao/tomatoidao.cpp \
+    ../src/model/pomodoro.cpp
 
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
+
+HEADERS += \
+    mocks/curl/curl.h
+
+OTHER_FILES += \
+    mocks/curl/tomatoi-example.html

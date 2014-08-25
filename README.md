@@ -16,7 +16,7 @@ sudo apt-get install libcurl4-gnutls-dev
 Project looks for $HOME/lib/boost.
 Install, compile and create a symbolic link to boost root directory.
 
-My enviroment looks like this:
+My environment looks like this:
 ```
 $ ls -l ~/lib/boost
 lrwxrwxrwx 1 cassiano cassiano 13 Ago 22 21:33 /home/cassiano/lib/boost -> boost_1_56_0/

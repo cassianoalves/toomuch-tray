@@ -80,30 +80,74 @@ void Floating::show()
 
 void Floating::checkScreenLimits()
 {
-    screenLimits = QApplication::desktop()->availableGeometry();
-    QPoint size(geometry().size().width(), geometry().size().height());
+    QDesktopWidget *desktop = QApplication::desktop();
+    screenLimits.clear();
+    for (int i=0; i< desktop->screenCount(); i++)
+    {
+        QRect scr = QApplication::desktop()->availableGeometry(i);
+        //QPoint size(geometry().size().width(), geometry().size().height());
+        //scr.setBottomRight(scr.bottomRight() - size);
 
-    screenLimits.setBottomRight(screenLimits.bottomRight() - size);
+        screenLimits.push_back(scr);
 
 #ifdef DEBUG
-    std::cout << "Limits: " << screenLimits.x();
-    std::cout << "," << screenLimits.y();
-    std::cout << "," << screenLimits.width();
-    std::cout << "," << screenLimits.height() << std::endl;
+    std::cout << "Limits(" << i << "): " << scr.x();
+    std::cout << "," << scr.y();
+    std::cout << "," << scr.width();
+    std::cout << "," << scr.height() << std::endl;
 #endif
+    }
+
+
 }
+
+/**
+ * @brief Floating::whatScreenIsPoint
+ * @param requested
+ * @return Screen number stating at 0, -1 is outside any screen
+ */
+int Floating::whatScreenIsPoint(QPoint requested)
+{
+    int scrNumber = -1;
+
+    for (std::size_t i=0; i < screenLimits.size(); i++) {
+        QRect scr = screenLimits.at(i);
+        if (scr.contains(requested))
+        {
+            scrNumber = i;
+            break;
+        }
+    }
+    return scrNumber;
+}
+
+QLine Floating::xLimitsForPoint(QPoint p)
+{
+
+}
+
+QLine Floating::yLimitsForPoint(QPoint p)
+{
+
+}
+
 
 QPoint Floating::calculateNewPosition(QPoint requestedPos)
 {
     QPoint adjustedPos;
+    QRect scr = screenLimits.back();
 
-    adjustedPos.setX(limit_value(requestedPos.x(),screenLimits.x(), screenLimits.bottomRight().x()));
-    adjustedPos.setY(limit_value(requestedPos.y(),screenLimits.y(), screenLimits.bottomRight().y()));
+    adjustedPos.setX(limit_value(requestedPos.x(),xLimitsForPoint(requestedPos).p1().x(),
+                                 xLimitsForPoint(requestedPos).p2().x()));
+    adjustedPos.setY(limit_value(requestedPos.y(),xLimitsForPoint(requestedPos).p1().y(),
+                                 xLimitsForPoint(requestedPos).p2().y()));
 
 #ifdef DEBUG
+    std::cout << whatScreenIsPoint(requestedPos) << " - ";
     std::cout << requestedPos.x() << "," << requestedPos.y();
     std::cout << " => ";
-    std::cout << adjustedPos.x() << "," << adjustedPos.y() << std::endl;
+    std::cout << adjustedPos.x() << "," << adjustedPos.y();
+    std::cout << std::endl;
 #endif
 
     return adjustedPos;

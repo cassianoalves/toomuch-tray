@@ -37,11 +37,14 @@ private:
     QPoint dragPos;
     QMenu *contextMenu;
     ConfigRepository *configRepository;
-    QRect screenLimits;
+    std::vector<QRect> screenLimits;
 
     void checkScreenLimits();
+    int whatScreenIsPoint(QPoint requested);
     QPoint calculateNewPosition(QPoint requestedPos);
     QPoint calculateMenuPosition(QContextMenuEvent *event);
+    QLine xLimitsForPoint(QPoint p);
+    QLine yLimitsForPoint(QPoint p);
 
 };
 

@@ -37,5 +37,5 @@ make in ../build-toomuch-tray-Desktop-Release
 # I don't want to compile it!!!
 
 Ok! Try out a compiled binary on /release directory.
-Compiled on a Mint Linux 17.
+Compiled on a Mint Linux 17 (x64).
 

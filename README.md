@@ -36,5 +36,5 @@ make in ../build-toomuch-tray-Desktop-Release
 
 # I don't want to compile it!!!
 
-Ok! Try out a [compiled binary](https://github.com/cassianoalves/toomuch-tray/blob/master/release/toomuch-tray).
+Ok! Try out a [compiled binary](https://github.com/cassianoalves/toomuch-tray/blob/master/release/toomuch-tray?raw=true).
 Compiled on a Mint Linux 17 (x64).
